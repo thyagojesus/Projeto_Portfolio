@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="Pt-br">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Cartão de visita</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <div class="conteiner">
-            <div class="avatar">
-                <span>
+      <div class="conteiner">
+        <div class="avatar">
+          <span>
             <img src="image/build.svg" alt="Carimbo" />
           </span>
-                <img id="userImage" src="https://lorempixel.com/185/185/people" alt="Foto do dono do cartão" />
-            </div>
-            <h1 id="userName">Padrão</h1>
-            <a id="userLink" href="http://instagram.com/thyago_jesus" target="_blank"><img id="github" src="./image/github 2.svg" alt="github" /><span id="userLogin">UserLogin</span
+          <img
+            id="userImage"
+            src="https://lorempixel.com/185/185/people"
+            alt="Foto do dono do cartão"
+          />
+        </div>
+        <h1 id="userName">Padrão</h1>
+        <a
+          id="userLink"
+          href="http://instagram.com/thyago_jesus"
+          target="_blank"
+          ><img id="github" src="./image/github 2.svg" alt="github" /><span
+            id="userLogin"
+            >UserLogin</span
           >
         </a>
 
@@ -69,6 +81,15 @@
         <h1>Meu portfólio</h1>
 
         <div class="Card">
+          <div class="Title" style="background-color: red">
+            Title Second Project
+          </div>
+          <div class="Content" style="border: solid red">
+            conteudo do segundo projeto
+          </div>
+        </div>
+
+        <div class="Card">
           <div class="Title" style="background-color: royalblue">Contador</div>
           <div class="Content" style="border: solid royalblue">
             <div><label for="" id="tela"> 0 </label></div>
@@ -78,51 +99,14 @@
               <button id="button" onclick="contarMais()">+</button>
               <button id="button" onclick="contarMenos()">-</button>
             </span>
+          </div>
         </div>
-        </div>
+      </div>
 
-        <div class="Card">
-            <div class="Title" style="background-color: red">
-                Title Second Project
-            </div>
-            <div class="Content" style="border: solid red">
-                conteudo do segundo projeto
-            </div>
-        </div>
-
-        <div class="Card">
-            <div class="Title" style="background-color: green">
-                Title third Project
-            </div>
-            <div class="Content" style="border: solid green">
-                conteudo do segundo projeto
-            </div>
-        </div>
-
-        <div class="Card">
-            <div class="Title" style="background-color: orangered">
-                Title fourth Project
-            </div>
-            <div class="Content" style="border: solid orangered">
-                conteudo do segundo projeto
-            </div>
-        </div>
-
-<div class="Card">
-            <div class="Title" style="background-color: orangered">
-                Title fourth Project
-            </div>
-            <div class="Content" style="border: solid orangered">
-                conteudo do segundo projeto
-            </div>
-        </div>
-        </div>
-
-        <div class="footer">
-            <footer>&copy; Thyago Jesus</footer>
-        </div>
+      <div class="footer">
+        <footer>&copy; Thyago Jesus</footer>
+      </div>
     </main>
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
