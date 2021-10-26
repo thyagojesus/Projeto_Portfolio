@@ -74,6 +74,15 @@ a {
     text-align: center;
 }
 
+a.button {
+    position: relative;
+    margin: auto auto;
+    color: #000;
+    border: solid red;
+    width: 8rem;
+    background-color: rgb(226, 76, 76);
+}
+
 p {
     margin-top: 2rem;
 }
