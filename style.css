@@ -23,6 +23,7 @@ main {
     height: 812px;
     text-align: center;
     position: relative;
+    transition: background 0.2s;
 }
 
 #button {
