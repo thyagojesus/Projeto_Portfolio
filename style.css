@@ -1,3 +1,9 @@
+:root {
+    --hue: 159;
+    --title-color: hsl(var(--hue) 41% 10%);
+    --base-color: hsl(var(--hue) 36% 57%);
+}
+
 * {
     margin: 0;
 }
@@ -152,6 +158,47 @@ li:hover {
 .Card:hover,
 #github:hover {
     transform: scale(1.04);
+}
+
+a {
+    display: block;
+}
+
+div.logo {
+    background-color: white;
+    border: solid rgb(226, 226, 226) 1px;
+    border-radius: 0.25rem;
+}
+
+div.logo:hover {
+    background-color: var(--base-color);
+}
+
+div.logo:hover span {
+    color: white;
+}
+
+.logo {
+    display: flex;
+    position: relative;
+    font: 700 1.31rem 'Poppins', sans-serif;
+    color: var(--title-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    width: 11rem;
+    height: 2rem;
+    margin: auto;
+    align-items: center;
+    gap: 0;
+}
+
+.logo span {
+    color: var(--base-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 footer {
