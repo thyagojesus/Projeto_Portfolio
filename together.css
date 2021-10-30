@@ -417,11 +417,6 @@ nav.show div.icon-close {
 .swiper-slide {
     height: auto;
     padding: 4rem 1rem;
-    max-width: 300px;
-}
-
-.swiper-pagination {
-    position: relative;
 }
 
 .swiper-pagination-bullet {
@@ -432,6 +427,9 @@ nav.show div.icon-close {
 .swiper-pagination-bullet-active {
     background: var(--base-color);
 }
+
+
+/*====  CONTACT ============================ */
 
 #contact .grid {
     gap: 4rem;
