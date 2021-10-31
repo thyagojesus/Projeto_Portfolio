@@ -58,3 +58,10 @@ function contarMenos() {
 
     label.innerHTML = conteudoAtual - conteudoNovo
 }
+
+function scroll() {
+    console.log('OI')
+    var y = window.scrollY
+    window.scrollY = 200
+    console.log(window.scrollY)
+}
