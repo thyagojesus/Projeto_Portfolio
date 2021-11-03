@@ -52,47 +52,87 @@
 
         <section id="transaction">
             <h2 class="sr-only">Transações</h2>
-            <a href="#" class="button new">+ Nova Transação</a>
-            <table id="data-table">
-                <thead>
-                    <tr>
-                        <th>Descrição</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="description">Luz</td>
-                        <td class="expense">- R$ 500,00</td>
-                        <td class="date">23/10/2021</td>
-                        <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="description">Criação de Site</td>
-                        <td class="income" d>R$ 5.000,00</td>
-                        <td class="date" d>23/01/2021</td>
-                        <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="description">Internet</td>
-                        <td class="expense" d>- R% 200,00</td>
-                        <td class="date" d>23/01/2021</td>
-                        <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <a onclick="Modal.open()" href="#" class="button new">+ Nova Transação</a
+        >
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="description">Luz</td>
+              <td class="expense">- R$ 500,00</td>
+              <td class="date">23/10/2021</td>
+              <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
+            </tr>
+            <tr>
+              <td class="description">Criação de Site</td>
+              <td class="income" d>R$ 5.000,00</td>
+              <td class="date" d>23/01/2021</td>
+              <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
+            </tr>
+            <tr>
+              <td class="description">Internet</td>
+              <td class="expense" d>- R% 200,00</td>
+              <td class="date" d>23/01/2021</td>
+              <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </main>
 
     <div class="modal-overlay">
-        <div class="modal">
-            <div class="content">oi</div>
+      <div class="modal">
+        <div id="form">
+          <h2>Nova Transação</h2>
+          <form action="">
+            <div class="input-group">
+              <label for="description" class="sr-only">Drescrição</label>
+              <input
+                id="description"
+                name="description"
+                placeholder="Descrição"
+                type="text"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="amount" class="sr-only">Descrição</label>
+              <input
+                id="amount"
+                name="amount"
+                placeholder="0,00"
+                step="0.01"
+                type="number"
+              />
+              <small class="help"
+                >Use o sinal - (negativo) para despesas e , (virgula) para casas
+                decimais
+              </small>
+            </div>
+
+            <div class="input-group">
+              <label for="date" class="sr-only">Data</label>
+              <input id="date" name="date" placeholder="data" type="date" />
+            </div>
+            <div class="input-group actions">
+              <a onclick="Modal.clouse()" href="#" class="button cancel"
+                >Cancelar</a
+              >
+              <button>Salvar</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <footer>dev.finance$</footer>
-</body>
-
+    <script src="./finance.js"></script>
+  </body>
 </html>
