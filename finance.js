@@ -1,82 +1,165 @@
 const Modal = {
-    open() {
-        document.querySelector('.modal-overlay').classList.add('active')
-    },
-    clouse() {
-        document.querySelector('.modal-overlay').classList.remove('active')
+        open() {
+            document.querySelector('.modal-overlay').classList.add('active')
+        },
+        clouse() {
+            document.querySelector('.modal-overlay').classList.remove('active')
+        }
     }
-}
-
-const Transaction = {
-    incomes() {
-        // somar as entradas
-    },
-    expenses() {
-        // somar as saidas
-    },
-    total() {
-        // entradas - saidas
-    }
-}
-
+    // o array transcations contem todas as transações
 const transactions = [{
-        id: 1,
-        description: 'luz',
-        amount: -50000,
-        date: '23/01/2022'
+            id: 1,
+            description: 'luz',
+            amount: -50002,
+            date: '23/01/2022'
+        },
+        {
+            id: 2,
+            description: 'Criação de web',
+            amount: 500000,
+            date: '23/01/2021'
+        },
+        {
+            id: 3,
+            description: 'internet',
+            amount: -20000,
+            date: '23/01/2021'
+        },
+        {
+            id: 4,
+            description: 'app',
+            amount: 200001,
+            date: '23/01/2021'
+        }
+    ]
+    // Objeto responsavel por somar as entradas,saidas e valor total
+const Transaction = {
+    all: transactions,
+
+    add(transaction) {
+        Transaction.all.push(transaction)
+        App.reload()
+        console.log(Transaction.all)
     },
-    {
-        id: 2,
-        description: 'Criação de web',
-        amount: 500000,
-        date: '23/01/2021'
+    remove(index) {
+        Transaction.all.splice(index, 1)
+
+        App.reload()
     },
-    {
-        id: 3,
-        description: 'internet',
-        amount: -20000,
-        date: '23/01/2021'
+    // o forEach um atributo disponivel nos arrays
+    incomes() {
+        let income = 0
+            // para cada transação se o valor for maior que 0
+        Transaction.all.forEach(transaction => {
+            if (transaction.amount > 0) {
+                income += transaction.amount
+            }
+        })
+        return income
     },
-    {
-        id: 4,
-        description: 'app',
-        amount: 200000,
-        date: '23/01/2021'
+
+    expenses() {
+        let expense = 0
+        Transaction.all.forEach(transaction => {
+            if (transaction.amount < 0) {
+                expense += transaction.amount
+            }
+        })
+
+        return expense
+    },
+
+    total() {
+        let total = 0
+        let expense = Transaction.expenses()
+        let income = Transaction.incomes()
+        total = income + expense
+
+        return total
     }
-]
+}
 
 const DOM = {
+    // busca a tabela
     transactionContainer: document.querySelector('#data-table tbody'),
-
     addTransaction(transaction, index) {
+        // Cria elemento TR,
         const tr = document.createElement('tr')
+            //adiciona um HTML na propriedade innerHTML
         tr.innerHTML = DOM.innerHTMLTransaction(transaction)
-
-        this.transactionContainer.appendChild(tr)
+            // cria um elemento filho na tabela usando o appendChild recebendo o TR
+        DOM.transactionContainer.appendChild(tr)
     },
     innerHTMLTransaction(transaction) {
+        // valida o valor, e define se é entrada ou saida
         const CSSclass = transaction.amount > 0 ? 'income' : 'expense'
+            // converte o valor em moeda
+        const amount = Utils.formatCurrency(transaction.amount)
+            // a const html recebe o HTML a ser adicionado
         const html = `
         
         
               <td class="description">${transaction.description}</td>
-              <td class="${CSSclass}">- ${transaction.amount}</td>
+              <td class="${CSSclass}">   ${amount}</td>
               <td class="date">${transaction.date}</td>
               <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
             
         `
         return html
+    },
+    // essa função é responsavel por atualizar visualmente os valores nos campos entradas, saidas e total
+    updateBalance() {
+        //busca a tag pelo ID, altera o HTML dela, convertendo o valor retornado da função para o formato de moeda.
+        document.querySelector('#incomeDisplay').innerHTML = Utils.formatCurrency(
+            Transaction.incomes()
+        )
+        document.querySelector('#expenseDisplay').innerHTML = Utils.formatCurrency(
+            Transaction.expenses()
+        )
+        document.querySelector('#totalDisplay').innerHTML = Utils.formatCurrency(
+            Transaction.total()
+        )
+    },
+    clearTransactions() {
+        DOM.transactionContainer.innerHTML = ''
     }
 }
-transactions.forEach(function(transcation) {
-    DOM.addTransaction(transcation)
-})
 
 const Utils = {
+    // função abaixo converte o valor recebido em moeda PT-br
     formatCurrency(value) {
-        const sinal = Number(value) < 0 ? '-' : ''
+        // guarda o sinal do valor recebido, validando se ele é negativo ou não
+        const signal = Number(value) < 0 ? '-' : ''
+            // transforma o valor em String para substituir/retirar qualquer valor que nao seja numerico
+        value = String(value).replace(/\D/g, '')
+            // value recebe o valor numerico dividido por 100, ja que retiramos todos os pontos e virgulas na linha acima
+        value = Number(value) / 100
+            //  linhas abaixo pega o valor e converte ele para moeda local, infomando o estilo moeda e qual tipo de moeda
+        value = value.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        })
 
-        value.String(value)
-        console.log(sinal)
+        return signal + value
     }
 }
+const App = {
+    // inicializa a aplição
+    init() {
+        // para cada transação execute a função addTransaction
+        Transaction.all.forEach(transcation => {
+                DOM.addTransaction(transcation)
+            })
+            // atualize o balanço
+        DOM.updateBalance()
+    },
+    // fazer um reload na tabela
+    reload() {
+        // chame a função para limpar o tabela
+        DOM.clearTransactions()
+            // inicie a aplicação novamente
+        App.init()
+    }
+}
+App.init()
+alert(' Em construção')
