@@ -126,6 +126,11 @@ const DOM = {
 }
 
 const Utils = {
+    formatAmount(value) {
+        value = Number(value) * 100
+        return value
+    },
+
     // função abaixo converte o valor recebido em moeda PT-br
     formatCurrency(value) {
         // guarda o sinal do valor recebido, validando se ele é negativo ou não
@@ -141,6 +146,65 @@ const Utils = {
         })
 
         return signal + value
+    },
+
+    formatDate(date) {
+        const splitedDate = date.split('-')
+
+        date = `${splitedDate[2]}/ ${splitedDate[1]} / ${splitedDate[0]}`
+        return date
+    }
+}
+
+const Form = {
+    description: document.querySelector('input#description'),
+    amount: document.querySelector('input#amount'),
+    date: document.querySelector('input#date'),
+
+    getValue() {
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value
+        }
+    },
+
+    validateField() {
+        console.log('validando os campos')
+        const { description, amount, date } = Form.getValue()
+        if (
+            description.trim() === '' ||
+            amount.trim() === '' ||
+            date.trim() === ''
+        ) {
+            throw new Error('Por favor, preencha todos os campos')
+        }
+    },
+
+    formatValues() {
+        let { description, amount, date } = Form.getValue()
+        amount = Utils.formatAmount(amount)
+        date = Utils.formatDate(date)
+        return { description, amount, date }
+    },
+    clearFields(event) {
+        Form.description.value = ''
+        Form.amount.value = ''
+        Form.date.value = ''
+    },
+
+    submit(event) {
+        event.preventDefault()
+        try {
+            Form.validateField()
+            const transaction = Form.formatValues()
+            Transaction.add(transaction)
+            Form.clearFields()
+            Modal.clouse()
+            App.reload()
+        } catch (error) {
+            alert(error.message)
+        }
     }
 }
 const App = {
@@ -162,4 +226,3 @@ const App = {
     }
 }
 App.init()
-alert(' Em construção')
