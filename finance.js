@@ -7,34 +7,21 @@ const Modal = {
         }
     }
     // o array transcations contem todas as transações
-const transactions = [{
-            id: 1,
-            description: 'luz',
-            amount: -50002,
-            date: '23/01/2022'
+
+const Storage = {
+        get() {
+            return JSON.parse(localStorage.getItem('dev.finances:transaction')) || []
         },
-        {
-            id: 2,
-            description: 'Criação de web',
-            amount: 500000,
-            date: '23/01/2021'
-        },
-        {
-            id: 3,
-            description: 'internet',
-            amount: -20000,
-            date: '23/01/2021'
-        },
-        {
-            id: 4,
-            description: 'app',
-            amount: 200001,
-            date: '23/01/2021'
+        set(transactions) {
+            localStorage.setItem(
+                'dev.finances:transaction',
+                JSON.stringify(transactions)
+            )
         }
-    ]
+    }
     // Objeto responsavel por somar as entradas,saidas e valor total
 const Transaction = {
-    all: transactions,
+    all: Storage.get(),
 
     add(transaction) {
         Transaction.all.push(transaction)
@@ -82,15 +69,17 @@ const Transaction = {
 const DOM = {
     // busca a tabela
     transactionContainer: document.querySelector('#data-table tbody'),
+
     addTransaction(transaction, index) {
         // Cria elemento TR,
         const tr = document.createElement('tr')
             //adiciona um HTML na propriedade innerHTML
-        tr.innerHTML = DOM.innerHTMLTransaction(transaction)
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction, index)
             // cria um elemento filho na tabela usando o appendChild recebendo o TR
+        tr.dataset.index = index
         DOM.transactionContainer.appendChild(tr)
     },
-    innerHTMLTransaction(transaction) {
+    innerHTMLTransaction(transaction, index) {
         // valida o valor, e define se é entrada ou saida
         const CSSclass = transaction.amount > 0 ? 'income' : 'expense'
             // converte o valor em moeda
@@ -99,11 +88,11 @@ const DOM = {
         const html = `
         
         
-              <td class="description">${transaction.description}</td>
-              <td class="${CSSclass}">   ${amount}</td>
-              <td class="date">${transaction.date}</td>
-              <td><img src="./image/assets/minus.svg" alt="" srcset="" /></td>
-            
+        <td class="description">${transaction.description}</td>
+        <td class="${CSSclass}">   ${amount}</td>
+        <td class="date">${transaction.date}</td>
+        <td><img onclick="Transaction.remove(${index})"src="./image/assets/minus.svg" alt="" srcset="" /></td>
+        
         `
         return html
     },
@@ -201,7 +190,6 @@ const Form = {
             Transaction.add(transaction)
             Form.clearFields()
             Modal.clouse()
-            App.reload()
         } catch (error) {
             alert(error.message)
         }
@@ -211,11 +199,12 @@ const App = {
     // inicializa a aplição
     init() {
         // para cada transação execute a função addTransaction
-        Transaction.all.forEach(transcation => {
-                DOM.addTransaction(transcation)
+        Transaction.all.forEach((transcation, index) => {
+                DOM.addTransaction(transcation, index)
             })
             // atualize o balanço
         DOM.updateBalance()
+        Storage.set(Transaction.all)
     },
     // fazer um reload na tabela
     reload() {
