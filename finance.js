@@ -117,7 +117,7 @@ const DOM = {
 const Utils = {
     formatAmount(value) {
         value = Number(value) * 100
-        return value
+        return Math.round(value)
     },
 
     // função abaixo converte o valor recebido em moeda PT-br
