@@ -198,7 +198,11 @@
      }
      
      td.expense {
-         color: #e92929
+         color: #e92929;
+     }
+     
+     td .img {
+         cursor: pointer
      }
      /* MODAL ================ */
      
