@@ -165,6 +165,44 @@ a {
 }
 
 
+/* ======================================== CAPTURE PAGE =============== */
+
+.divcapture {
+    display: flex;
+    font: 700 1.31rem 'Poppins', sans-serif;
+    color: black;
+    padding: 0;
+    text-decoration: none;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    width: 11rem;
+    height: 2rem;
+    margin: auto;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+    border: solid red 1px;
+    border-radius: 4px;
+    transition: all 1s;
+    background-color: royalblue;
+}
+
+.divcapture a {
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.divcapture:hover a {
+    padding-right: 25px;
+    transition: 0.5s;
+}
+
+.divcapture:hover a:after {
+    content: ' \00bb';
+}
+
+
 /* ======================================== DEV FINANCE=============== */
 
 div.logo {
