@@ -1,0 +1,4 @@
+div.but {
+    display: flex;
+    justify-content: space-between;
+}

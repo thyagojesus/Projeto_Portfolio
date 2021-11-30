@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteio simples</title>
+
+</head>
+
+<body>
+    <h1 id=>Cadastre as pessoas participantes do sorteio</h1>
+    <form action="">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="label">
+        <input type="button" value="salvar" onclick='salvar()'></input>
+    </form>
+    <div class="but">
+        <button onclick="sortear()" style=" margin: 1rem">Sortear</button>
+        <input type="button" value="Novo sorteio" onclick="storageclear()" style="margin-left: 9rem;"></input>
+    </div>
+    <h1 id="sorteado"></h1>
+    <script>
+        function salvar() {
+            let names = [];
+            let name = document.getElementById('name')
+            names = JSON.parse(localStorage.getItem('participantes'))
+            if (names === null) {
+                names = []
+                names.push(name.value)
+                localStorage.setItem("participantes", JSON.stringify(names))
+                name.value = ""
+            } else {
+                names = JSON.parse(localStorage.getItem('participantes'))
+                names.push(name.value)
+                localStorage.setItem("participantes", JSON.stringify(names))
+                console.log(names)
+                name.value = ""
+            }
+
+        }
+
+        function sortear() {
+            names = JSON.parse(localStorage.getItem('participantes'));
+
+
+
+            let qtdParticipants = names.length
+            console.log(qtdParticipants)
+            let Nsorteado = Math.floor(Math.random() * qtdParticipants)
+
+            let h1 = document.getElementById('sorteado')
+            h1.innerText = '-'
+            h1.innerText = names[Nsorteado]
+        }
+
+        function storageclear() {
+            console.log("clear")
+            localStorage.clear("participantes")
+            alert("cadastre novos participantes")
+
+        }
+    </script>
+</body>
+
+</html>
