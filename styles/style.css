@@ -165,6 +165,21 @@ a {
 }
 
 
+/* ======================================== CHURRASCOMETRO =============== */
+
+.logo.churras {
+    background-color: #3498DB;
+    transition: all 0.5s;
+    transition: all 150ms ease-in-out;
+}
+
+.logo.churras:hover {
+    background-color: white;
+    border: #3498DB solid 1px;
+    box-shadow: 0 0 20px 2px #3498db;
+}
+
+
 /* ======================================== CAPTURE PAGE =============== */
 
 .btn {
