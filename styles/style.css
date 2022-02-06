@@ -165,21 +165,6 @@ a {
 }
 
 
-/* ======================================== CHURRASCOMETRO =============== */
-
-.logo.churras {
-    background-color: #3498DB;
-    transition: all 0.5s;
-    transition: all 150ms ease-in-out;
-}
-
-.logo.churras:hover {
-    background-color: white;
-    border: #3498DB solid 1px;
-    box-shadow: 0 0 20px 2px #3498db;
-}
-
-
 /* ======================================== CAPTURE PAGE =============== */
 
 .btn {
@@ -409,4 +394,53 @@ footer {
     #portfolio {
         max-width: 22.2rem;
     }
+}
+
+
+/* ======================================== CONTROLE DE VIDEO=============== */
+
+.Content.video {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    cursor: default
+}
+
+div.Content.video:hover .Content.video.control {
+    visibility: visible;
+}
+
+.Content.video video {
+    width: 100%;
+    position: relative;
+}
+
+.Content.video.control {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    opacity: 1;
+    visibility: hidden;
+}
+
+.Content.video.control img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+
+/* ======================================== CHURRASCOMETRO =============== */
+
+.logo.churras {
+    background-color: #3498DB;
+    transition: all 0.5s;
+    transition: all 150ms ease-in-out;
+}
+
+.logo.churras:hover {
+    background-color: white;
+    border: #3498DB solid 1px;
+    box-shadow: 0 0 20px 2px #3498db;
 }

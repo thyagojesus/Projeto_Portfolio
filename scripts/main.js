@@ -65,3 +65,25 @@ function scroll() {
     window.scrollY = 200
     console.log(window.scrollY)
 }
+
+function play_video() {
+    let video = document.querySelector('#video')
+    console.log(video)
+    video.play()
+}
+
+function pause_video() {
+    let video = document.querySelector('#video')
+    console.log(video)
+    video.pause()
+}
+
+function retroceder() {
+    let video = document.querySelector('#video')
+    video.currentTime -= 15
+}
+
+function voltar_ao_inicio() {
+    let video = document.querySelector('#video')
+    video.currentTime = 0
+}
